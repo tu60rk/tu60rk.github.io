@@ -386,7 +386,6 @@ function createBox(id){
     box.classList.add('unvis-box');
     box.classList.add('box');
     box.innerHTML = '\
-                    {% csrf_token %}\
                     <div id="input-courses">\
                     <div id="input-courses-0" class="item">\
                             <div class="input-courses">\
