@@ -5,18 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-  <body>
+  <body id="opa">
     <a name="start-main"></a>
     <section class="landing-main-start">
         <div class="landing-section-content">
           <h1 class="brand">Школьное расписание</br>в несколько кликов!</h1>
           <p class="landing-main-text">
-                   Используя различные алгоритмы, Вы сможете быстро получить расписание в нужном Вам виде. </br>Быстро. Просто. Удобно.
+            Используя данное приложение, вы получите школьное расписание в нужном Вам виде.</br>Быстро. Просто. Удобно.
           </p>
           <a href="#subjects" class="sub-btn act-btn">построить расписание</a>
       </div>
     </section>
     <div>
+        <div class="landing-nav-right">
+            <div class="nav-item nav-item-one"><div class="nav-circle nav-item-active"><p>1</p><div class="nav-line nav-line-one"></div></div><a href="#subjects" class="nav-p nav-item-active-p">Предметы</a></div>
+            <div class="nav-item nav-item-two"><div class="nav-circle"><p>2</p><div class="nav-line nav-line-two"></div></div><a href="#teachers" class="nav-p">Преподаватели</a></div>
+            <div class="nav-item nav-item-three"><div class="nav-circle"><p>3</p><div class="nav-line nav-line-three"></div></div><a href="#classes" class="nav-p">Классы</a></div>
+            <div class="nav-item nav-item-four"><div class="nav-circle"><p>4</p><div class="nav-line nav-line-four"></div></div><a href="#courses" class="nav-p">Курсы</a></div>
+            <div class="nav-item nav-item-five"><div class="nav-circle"><p>5</p><div class="nav-line nav-line-five"></div></div><a href="#option" class="nav-p">Дополнительные настройки</a></div>
+            <div class="nav-item nav-item-six"><div class="nav-circle"><p>6</p><div class="nav-line nav-line-six"></div></div><a href="#finish" class="nav-p">Результат</a></div>
+        </div>
         <section class="landing-choose-subjects">
             <a name="subjects"></a>
             <div>
@@ -32,7 +40,7 @@
                     </h1>
                 </div>
                 <div class="help-button">
-                    <button class="sub-btn pas-btn" onclick="addStandartLessons()">Добавить стандартные уроки</button>
+                    <button class="sub-btn pas-btn" onclick="addStandartLessons()">Добавить предметы автоматически</button>
                     <button class="sub-btn act-btn" onclick="delAllInput('input-subject-')">Удалить все</button>
                 </div>
                 <div class="boxer">
@@ -65,14 +73,7 @@
                 </div>
             </div>
         </section>
-        <div class="landing-nav-right">
-                <div class="nav-item nav-item-one"><div class="nav-circle nav-item-active"><p>1</p><div class="nav-line nav-line-one"></div></div><a href="#subjects" class="nav-p nav-item-active-p">Предметы</a></div>
-                <div class="nav-item nav-item-two"><div class="nav-circle"><p>2</p><div class="nav-line nav-line-two"></div></div><a href="#teachers" class="nav-p">Преподаватели</a></div>
-                <div class="nav-item nav-item-three"><div class="nav-circle"><p>3</p><div class="nav-line nav-line-three"></div></div><a href="#classes" class="nav-p">Классы</a></div>
-                <div class="nav-item nav-item-four"><div class="nav-circle"><p>4</p><div class="nav-line nav-line-four"></div></div><a href="#courses" class="nav-p">Курсы</a></div>
-                <div class="nav-item nav-item-five"><div class="nav-circle"><p>5</p><div class="nav-line nav-line-five"></div></div><a href="#option" class="nav-p">Дополнительные настройки</a></div>
-                <div class="nav-item nav-item-six"><div class="nav-circle"><p>6</p><div class="nav-line nav-line-six"></div></div><a href="#finish" class="nav-p">Результат</a></div>
-        </div>
+        <div class="nav-psevdo-right"></div>
         <section class="landing-choose-teachers">
             <a name="teachers"></a>
             <div>
@@ -92,11 +93,12 @@
                 </div>
                 <div class="boxer">
                     <form id="input-teacher" class="landing-form">
+                        {% csrf_token %}
                         <div id="input-teacher-0" class="item">
                             <div class="input-teacher">
-                                    <input type="text" class="teacher-name-first" value="" placeholder="Фамилия" pattern = "^[а-яА-ЯЁё]+$" required>
-                                    <input type="text" class="teacher-name-second" value="" placeholder="Имя" pattern = "^[а-яА-ЯЁё]+$" required>
-                                    <input type="text" class="teacher-name-third" value="" placeholder="Отчество" pattern = "^[а-яА-ЯЁё]+$" required>
+                                    <input type="text" class="teacher-name-first" value="" placeholder="Карпунин" pattern = "^[а-яА-ЯЁё]+$" required>
+                                    <input type="text" class="teacher-name-second" value="" placeholder="Николай" pattern = "^[а-яА-ЯЁё]+$" required>
+                                    <input type="text" class="teacher-name-third" value="" placeholder="Сергеевич" pattern = "^[а-яА-ЯЁё]+$" required>
                                     <!-- <input type="text" class="teacher-name-third" value="" placeholder="Отчество" pattern="[А-Яа-я ]{20}" required> -->
                                     <select class = "list-of-subjects" onchange="getComboA(this)">
                                         <option class = "option-disabled" value="" disabled selected>Выбери предмет</option>
@@ -115,6 +117,7 @@
                 </div>
             </div>
         </section>
+        <div class="nav-psevdo-right"></div>
         <section class="landing-choose-classes">
             <a name="classes"></a>
             <div>
@@ -134,6 +137,7 @@
                 </div>
                 <div class="boxer">
                     <form id="input-classes" class="landing-form">
+                        {% csrf_token %}
                         <div id="input-classes-0" class="item">
                             <div class="input-classes">
                                     <input type="text" class="classes-name-number" value="" placeholder="5" pattern="[0-9]{1,2}" required>
@@ -172,6 +176,7 @@
                 </div>
             </div>
         </section>
+        <div class="nav-psevdo-right"></div>
         <section class="landing-choose-courses">
             <a name="courses"></a>
             <div>
@@ -197,6 +202,7 @@
                 </div>
             </div>
         </section>
+        <div class="nav-psevdo-right"></div>
         <section class="landing-choose-option">
             <a name="option"></a>
             <div>
@@ -221,6 +227,7 @@
                 </div>
             </div>
         </section>
+        <div class="nav-psevdo-right"></div>
         <section class="landing-choose-finish">
             <a name="finish"></a>
             <div>
