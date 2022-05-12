@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-  <body id = 'opa'>
+  <body>
     <a name="start-main"></a>
     <section class="landing-main-start">
         <div class="landing-section-content">
@@ -13,7 +13,7 @@
           <p class="landing-main-text">
                    Используя различные алгоритмы, Вы сможете быстро получить расписание в нужном Вам виде. </br>Быстро. Просто. Удобно.
           </p>
-          <a href="#subjects" class="sub-btn act-btn">Построить описание</a>
+          <a href="#subjects" class="sub-btn act-btn">построить расписание</a>
       </div>
     </section>
     <div>
@@ -37,10 +37,11 @@
                 </div>
                 <div class="boxer">
                     <form id="input-subject" class="landing-form">
+                        <!-- {% csrf_token %} -->
                         <div id="input-subject-0" class="item">
                             <div class="input-subject">
-                                    <input type="text" class="subject-name" value="" placeholder="Название предмета" pattern="[А-Яа-я ]" required>
-                                    <span class="description-text">Сложность:</span>
+                                    <input type="text" class="subject-name" value="" placeholder="Название предмета" pattern = "^[А-Яа-яЁё\s]+$" required>
+                                    <!-- <span class="description-text">Сложность:</span>
                                     <input type="number" class="subject-cost" value="1" min="1" max="2" step="0.5" required>
                                     <div class="number-input">
                                         <div>
@@ -49,7 +50,7 @@
                                         <div>
                                             <button onclick='this.parentNode.parentNode.parentNode.querySelector("input[type=number]").stepDown()' class="down"></button>
                                         </div>
-                                    </div>
+                                    </div> -->
                             </div>
                         </div>
                     </form>
@@ -93,10 +94,13 @@
                     <form id="input-teacher" class="landing-form">
                         <div id="input-teacher-0" class="item">
                             <div class="input-teacher">
-                                    <input type="text" class="teacher-name-first" value="" placeholder="Фамилия" pattern="[А-Яа-я ]{20}" required>
-                                    <input type="text" class="teacher-name-second" value="" placeholder="Имя" pattern="[А-Яа-я ]{20}" required>
-                                    <input type="text" class="teacher-name-third" value="" placeholder="Отчество" pattern="[А-Яа-я ]{20}" required>
-                                    <select class = "list-of-subjects" onchange="getComboA(this)"></select>
+                                    <input type="text" class="teacher-name-first" value="" placeholder="Фамилия" pattern = "^[а-яА-ЯЁё]+$" required>
+                                    <input type="text" class="teacher-name-second" value="" placeholder="Имя" pattern = "^[а-яА-ЯЁё]+$" required>
+                                    <input type="text" class="teacher-name-third" value="" placeholder="Отчество" pattern = "^[а-яА-ЯЁё]+$" required>
+                                    <!-- <input type="text" class="teacher-name-third" value="" placeholder="Отчество" pattern="[А-Яа-я ]{20}" required> -->
+                                    <select class = "list-of-subjects" onchange="getComboA(this)">
+                                        <option class = "option-disabled" value="" disabled selected>Выбери предмет</option>
+                                    </select>
                             </div>
                         </div>
                     </form>
@@ -132,9 +136,9 @@
                     <form id="input-classes" class="landing-form">
                         <div id="input-classes-0" class="item">
                             <div class="input-classes">
-                                    <input type="text" class="classes-name-number" value="" placeholder="5" pattern="[0-9]{1}" required>
+                                    <input type="text" class="classes-name-number" value="" placeholder="5" pattern="[0-9]{1,2}" required>
                                     <input type="text" class="classes-name-letter" value="" placeholder="А" pattern="[А-Яа-я]{1}" required>
-                                    <span class="description-text">Максимальное кол-во уроков в день:</span>
+                                    <span class="description-text">кол-во уроков в день:</span>
                                     <input type="number" class="classes-max-lessons" value="4" min="4" max="9" step="1" required>
                                     <div class="number-input-max-lessons">
                                         <div>
@@ -144,7 +148,7 @@
                                             <button onclick='this.parentNode.parentNode.parentNode.querySelector("input[type=number]").stepDown()' class="down"></button>
                                         </div>
                                     </div>
-                                    <span class="description-text">Кол-во уч. дней в неделю:</span>
+                                    <span class="description-text">кол-во уч. дней в неделю:</span>
                                     <input type="number" class="classes-study-day" value="5" min="5" max="6" step="1" required>
                                     <div class="number-input-study-day">
                                         <div>
@@ -211,7 +215,9 @@
                 </div>
                 <div class="btn-next">
                     <a href="#courses" class="sub-btn pas-btn">назад</a>
-                    <a href="#finish" onclick="" class="sub-btn act-btn">готово</a>
+                    <form method = "get">
+                        <button href="#finish" onclick="send_info()" class="sub-btn act-btn">готово</a>
+                    </form>
                 </div>
             </div>
         </section>
