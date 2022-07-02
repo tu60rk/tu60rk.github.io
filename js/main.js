@@ -1,16 +1,9 @@
-function displayOpa() {
-    let login = prompt("Enter login");
-    let pass = prompt("Enter password");
-
-    if (login == 'qwerty') {
-        if (pass == 'qwerty') {
-            document.getElementById('opa').style.display = 'block';//classList.add('activate');
-        };
-    };
-};
-
+$('.list-of-subjects-using-select').selectpicker('refresh');
+$('.list-of-teachers-using-select').selectpicker('refresh');
 $('.choose-count').selectpicker('refresh');
 
+
+get_user_info();
 /**
  * @name delInput
  * @description delete html element by it id.
@@ -122,7 +115,7 @@ window.onscroll = function() {
 function update_lvl(lvl) {
     switch(lvl) {
         case 'subject':
-            checkSelectionSubjects();     
+            checkSelectionSubjects();  
         case 'teacher':
             checkSelectionSubjects(); 
             checkSelectionTeachers(); 
